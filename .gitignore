@@ -1,0 +1,5 @@
+bin
+obj
+GraphMatrix.csproj
+GraphMatrix.sln
+Program.cs
