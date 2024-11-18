@@ -56,9 +56,10 @@ namespace GraphUtilities{
             }
         }
 
+
         private void Add(Node<T> from, Node<T> to)
         {
-            if (!_graph.ContainsKey(from)) 
+            if (!_graph!.ContainsKey(from)) 
                 _graph[from] = new HashSet<Node<T>>();
             _graph[from].Add(to);
         }
@@ -93,7 +94,7 @@ namespace GraphUtilities{
             return stringBuilder.ToString().TrimEnd();
         }
 
-        public Dictionary<Node<T>, HashSet<Node<T>>> Graph => _graph;
+        public Dictionary<Node<T>, HashSet<Node<T>>>? Graph => _graph;
         public bool IncludeDiagonals => _includeDiagonals;
     }
     public readonly struct Node<T>
