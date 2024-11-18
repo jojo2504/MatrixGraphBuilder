@@ -38,6 +38,10 @@ namespace GraphUtilities{
             {
                 for (int col = -1; col <= 1; col++) 
                 {
+                    // itself
+                    if (row == 0 && col == 0){
+                        continue;
+                    }
                     // outside matrix
                     if ((0 > c + col) || (c + col >= matrix2.GetLength(1)) || 
                         (0 > r + row) || (r + row >= matrix2.GetLength(0))) {
