@@ -3,7 +3,7 @@
 namespace GraphUtilities{
     public class MatrixGraphBuilder<T>
     {
-        readonly Dictionary<Node<T>, HashSet<Node<T>>> _graph;
+        readonly Dictionary<Node<T>, HashSet<Node<T>>>? _graph;
         readonly bool _includeDiagonals;
 
         public MatrixGraphBuilder(T[,] matrix, bool includeDiagonals = false){
@@ -13,8 +13,15 @@ namespace GraphUtilities{
             ConvertMatrixToGraph(matrix);
         }
 
+        public MatrixGraphBuilder(bool includeDiagonals = false){
+            _includeDiagonals = includeDiagonals;
+        }
+
         private void ConvertMatrixToGraph(T[,] matrix)
         {
+            if (matrix == null){
+                throw new ArgumentNullException("");
+            }
             for (int r = 0; r < matrix.GetLength(0); r++)
             {
                 for (int c = 0; c < matrix.GetLength(1); c++)
@@ -57,6 +64,7 @@ namespace GraphUtilities{
         }
 
         public void Clear(){
+            if (_graph == null) return;
             _graph.Clear();
         }
 
@@ -66,6 +74,8 @@ namespace GraphUtilities{
         }
 
         public override string ToString(){
+            if (_graph == null) return "";
+
             StringBuilder stringBuilder = new StringBuilder();
             foreach (KeyValuePair<Node<T>, HashSet<Node<T>>> kpv in _graph)
             {
